@@ -1,0 +1,421 @@
+<title>H&amp;C Production</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Maison d'édition : blanc, greige et prune ; les livres posés en vitrine comme des objets précieux ; un « feuilleteur » pour ouvrir chaque livre */
+:root{
+  --bg:#ffffff;
+  --stone:#f3f0eb;
+  --stone-a:rgba(243,240,235,.86);
+  --ink:#141213;
+  --grey:#6c6762;
+  --plum:#7b2d52;
+  --rose:#c99a8b;
+  --line:#e2ddd5;
+  --veil:rgba(20,16,18,.95);
+  --shadow:rgba(60,45,25,.22);
+  --wm:.22;
+  --serif:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --sans:"Jost","Futura","Century Gothic","Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161214;--stone:#221c1f;--stone-a:rgba(34,28,31,.88);--ink:#f2ece6;--grey:#b0a69f;--plum:#d58cae;--rose:#d9ad9f;--line:#3a3135;--veil:rgba(6,4,5,.92);--shadow:rgba(0,0,0,.55);--wm:.08;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161214;--stone:#221c1f;--stone-a:rgba(34,28,31,.88);--ink:#f2ece6;--grey:#b0a69f;--plum:#d58cae;--rose:#d9ad9f;--line:#3a3135;--veil:rgba(6,4,5,.92);--shadow:rgba(0,0,0,.55);--wm:.08;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased;letter-spacing:.01em;isolation:isolate;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:url("img/banner.jpg") center/cover no-repeat;opacity:var(--wm);pointer-events:none}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:50;background:var(--bg)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--plum);outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:760px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+.caps{font-family:var(--sans);font-weight:400;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase}
+.muted{color:var(--grey)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.1;text-wrap:balance}
+.link{display:inline-block;font-size:.72rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid currentColor;transition:color .3s}
+.link:hover{color:var(--plum)}
+
+.announce{background:var(--plum);color:#fff;text-align:center;padding-block:9px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:root[data-theme="dark"] .announce{color:#1a1216}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .announce{color:#1a1216}}
+
+header{background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:40;border-bottom:1px solid var(--line)}
+.top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-block:18px 10px}
+.top .side{display:flex;gap:26px}
+.top .side.r{justify-content:flex-end}
+.logo img{height:70px;width:auto;margin:0 auto;border-radius:4px}
+nav.main{display:flex;justify-content:center;gap:40px;padding-bottom:14px;flex-wrap:wrap}
+nav.main a{position:relative;white-space:nowrap}
+nav.main a::after{content:"";position:absolute;left:50%;right:50%;bottom:-5px;height:1px;background:var(--plum);transition:left .35s,right .35s}
+nav.main a:hover::after{left:0;right:0}
+
+.hero .wrap{display:flex;flex-direction:column;align-items:center;text-align:center;padding-block:56px 76px}
+.stage{display:flex;justify-content:center;align-items:flex-end;gap:clamp(14px,3vw,40px);margin-bottom:46px}
+.stage button{border:0;padding:0;background:none;cursor:pointer;position:relative}
+.stage img{box-shadow:0 2px 3px rgba(0,0,0,.08),16px 26px 44px var(--shadow);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.stage button:hover img{transform:translateY(-6px)}
+.stage .s1 img{width:min(170px,24vw)}
+.stage .s2 img{width:min(250px,34vw)}
+.stage .s3 img{width:min(150px,22vw)}
+.hero h1{font-size:clamp(2.3rem,5.2vw,4.4rem);margin:16px 0 22px;max-width:14em}
+.hero h1 em{font-style:italic;color:var(--plum)}
+.hero p{color:var(--grey);max-width:36em;margin:0 0 30px}
+
+.section{padding-block:100px}
+.intro{text-align:center;max-width:640px;margin:0 auto 60px}
+.intro h2{font-size:clamp(2rem,3.6vw,3rem);margin:14px 0 16px}
+.intro p{color:var(--grey);margin:0}
+.cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.tile{display:flex;flex-direction:column;gap:14px}
+.tile .vit{background:var(--stone-a);aspect-ratio:4/5;display:grid;place-items:center;overflow:hidden}
+.tile .vit img{width:54%;box-shadow:12px 20px 34px var(--shadow);transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.tile .vit img.sq{width:64%}
+.tile:hover .vit img{transform:scale(1.05)}
+.tile h3{font-size:1.45rem}
+.tile p{margin:-6px 0 0;color:var(--grey);font-size:.92rem}
+
+.range{padding-block:96px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--bg) 70%,transparent)}
+.range-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.range-head h2{font-size:clamp(2rem,3.4vw,2.8rem);margin-top:12px}
+.range-head p{color:var(--grey);max-width:32em;margin:12px 0 0}
+.grid{display:grid;gap:44px 22px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.prod{display:flex;flex-direction:column;gap:6px;min-width:0}
+.prod .vit{background:var(--stone-a);aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;margin-bottom:14px;position:relative;border:0;padding:0;cursor:pointer;width:100%}
+.prod .vit img{width:46%;box-shadow:10px 18px 30px var(--shadow);transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.prod .vit img.sq{width:58%}
+.g2 .prod .vit{aspect-ratio:5/4}
+.g2 .prod .vit img{width:34%}
+.prod .vit:hover img{transform:scale(1.04)}
+.prod .badge{position:absolute;top:16px;left:16px;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--grey)}
+.prod .peek{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;background:var(--bg);color:var(--ink);border:1px solid var(--line);padding:7px 14px;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;transition:background .3s,color .3s,border-color .3s}
+.prod .vit:hover .peek,.prod .vit:focus-visible .peek{background:var(--plum);border-color:var(--plum);color:#fff}
+.peek svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.4}
+.prod .name{font-size:.78rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.prod .desc{color:var(--grey);font-size:.9rem;margin:0}
+.prod .price{font-size:.9rem;margin-top:4px;font-variant-numeric:tabular-nums}
+.prod .price span{color:var(--grey)}
+.buy{display:flex;gap:18px;margin-top:8px;flex-wrap:wrap}
+.buy a{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);border-bottom:1px solid var(--line);padding-bottom:3px;transition:color .3s,border-color .3s}
+.buy a:hover{color:var(--plum);border-color:var(--plum)}
+
+.soon{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:64px}
+.soon div{border:1px solid var(--line);padding:28px;background:var(--stone-a)}
+.soon h3{font-size:1.3rem;margin:10px 0 6px}
+.soon p{color:var(--grey);margin:0;font-size:.92rem}
+
+.edito{display:grid;grid-template-columns:1fr 1fr;min-height:560px;border-top:1px solid var(--line)}
+.edito .pic{background:url("img/hero.jpg") 30% 40%/cover no-repeat}
+.edito .txt{background:var(--stone-a);display:flex;flex-direction:column;justify-content:center;padding-block:72px;padding-inline:max(24px,7vw)}
+.edito h2{font-size:clamp(2rem,3.4vw,3rem);margin:16px 0 22px}
+.edito p{color:var(--grey);max-width:30em;margin:0 0 14px}
+.edito blockquote{font-family:var(--serif);font-style:italic;font-size:1.45rem;line-height:1.4;margin:20px 0 30px;padding-left:22px;border-left:1px solid var(--rose);color:var(--plum)}
+
+.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg)}
+.svc{padding:52px 30px;text-align:center;border-left:1px solid var(--line)}
+.svc:first-child{border-left:0}
+.svc h3{font-size:1.25rem;margin:14px 0 10px}
+.svc p{color:var(--grey);font-size:.9rem;margin:0}
+
+footer{padding-block:84px 30px;background:var(--bg)}
+.foot{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+.foot h4{font-family:var(--sans);font-weight:500;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;margin:0 0 18px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;color:var(--grey);font-size:.92rem}
+.foot ul a:hover{color:var(--ink)}
+.mailrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px}
+.mail{font-family:var(--serif);font-size:clamp(1.05rem,2.4vw,1.4rem);user-select:all;overflow-wrap:anywhere}
+.copy{border:1px solid var(--line);background:none;padding:6px 12px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+.copy:hover{border-color:var(--plum);color:var(--plum)}
+.base{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:70px;padding-top:24px;border-top:1px solid var(--line);color:var(--grey)}
+.base img{height:50px;width:auto;border-radius:4px}
+
+/* Feuilleteur */
+.viewer{position:fixed;inset:0;z-index:100;background:var(--veil);backdrop-filter:blur(6px);display:flex;flex-direction:column;color:#f4eee8;
+  padding-top:calc(env(safe-area-inset-top,0px) + 12px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 12px);
+  padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.viewer[hidden]{display:none!important}
+.vbar{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1200px;width:100%;margin:0 auto;padding-bottom:10px}
+.vbar .t{min-width:0}
+.vbar .t b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(1.1rem,2.6vw,1.6rem);line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vbar .t span{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+.vclose{flex:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.35);background:none;color:inherit;cursor:pointer;display:grid;place-items:center}
+.vclose svg,.vnav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5}
+.vstage{flex:1;min-height:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;max-width:1200px;width:100%;margin:0 auto}
+.vpage{min-height:0;height:100%;display:flex;align-items:center;justify-content:center;gap:0;touch-action:pan-y}
+.vpage img{max-height:100%;max-width:100%;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);background:#fff}
+.vpage.spread img{max-width:50%}
+.vpage.spread img:first-child{box-shadow:-10px 20px 50px rgba(0,0,0,.45)}
+.vpage.spread img+img{box-shadow:10px 20px 50px rgba(0,0,0,.45)}
+.vnav{width:48px;height:48px;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.25);color:inherit;cursor:pointer;display:grid;place-items:center}
+.vnav:disabled{opacity:.25;cursor:default}
+.vfoot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1200px;width:100%;margin:12px auto 0}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;min-width:0;flex:1}
+.thumbs button{flex:none;border:1px solid transparent;padding:0;background:none;cursor:pointer;opacity:.55;transition:opacity .2s}
+.thumbs button[aria-current="true"]{opacity:1;border-color:#fff}
+.thumbs img{height:58px;width:auto}
+.vbuy{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.vbuy .p{font-variant-numeric:tabular-nums;opacity:.85;font-size:.9rem}
+.vbuy a{background:#f4eee8;color:#1a1216;padding:10px 18px;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
+.vbuy a+a{background:none;color:#f4eee8;border:1px solid rgba(255,255,255,.4)}
+.vhint{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6;text-align:center;margin-top:8px}
+
+@media (max-width:1000px){
+  .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot{grid-template-columns:1fr 1fr}
+  nav.main{gap:12px 26px}
+}
+@media (max-width:760px){
+  .top{grid-template-columns:1fr}
+  .top .side{display:none}
+  .logo img{height:56px}
+  .g3,.g2{grid-template-columns:1fr 1fr}
+  .edito{grid-template-columns:1fr}
+  .edito .pic{min-height:340px}
+  .services{grid-template-columns:1fr}
+  .svc{border-left:0;border-top:1px solid var(--line)}
+  .svc:first-child{border-top:0}
+  .section,.range{padding-block:72px}
+  .soon{grid-template-columns:1fr}
+  .vstage{grid-template-columns:1fr}
+  .vnav{display:none}
+  .vpage.spread img{max-width:100%}
+  .vpage.spread img+img{display:none}
+}
+@media (max-width:460px){
+  .cols,.g3{gap:28px 12px}
+  .g2{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  .prod .peek{padding:6px 10px;letter-spacing:.16em;bottom:10px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class="announce caps">Livres reliés sur Lulu · Papier et ebook sur Amazon · Ebooks sur Kobo</div>
+
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div class="side caps"><a href="#apropos">La maison</a></div>
+      <a class="logo" href="#top"><img src="img/logo.png" alt="H&amp;C Production"></a>
+      <div class="side r caps"><a href="#contact">Contact</a></div>
+    </div>
+    <nav class="main caps" aria-label="Collections">
+      <a href="#naissance">Carnets de naissance</a>
+      <a href="#renard">Enfants 0-3 ans</a>
+      <a href="#noel">Noël</a>
+      <a href="#ados">Romans ados</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="stage">
+      <button class="s1" type="button" data-open="merveille" aria-label="Feuilleter Ma petite merveille"><img src="img/c_merveille.jpg" alt="Ma petite merveille"></button>
+      <button class="s2" type="button" data-open="jardin" aria-label="Feuilleter Mon jardin enchanté"><img src="img/c_jardin.jpg" alt="Mon jardin enchanté"></button>
+      <button class="s3" type="button" data-open="cosmos" aria-label="Feuilleter Mon petit cosmos"><img src="img/c_cosmos.jpg" alt="Mon petit cosmos"></button>
+    </div>
+    <span class="caps muted">Nouveau · Carnets de naissance reliés</span>
+    <h1>Des livres qui <em>gardent</em> les plus beaux souvenirs</h1>
+    <p>Albums illustrés, romans pour ados et carnets à remplir. Ouvrez chaque livre et feuilletez quelques pages avant de le commander.</p>
+    <a class="link" href="#naissance">Feuilleter les carnets</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="intro">
+      <span class="caps muted">Nos univers</span>
+      <h2>Des livres à lire, à offrir et à garder</h2>
+      <p>Chaque titre est imaginé avec soin pour un âge de la vie, de la naissance à l'adolescence.</p>
+    </div>
+    <div class="cols">
+      <a class="tile" href="#naissance"><div class="vit"><img class="sq" src="img/c_nuage.jpg" alt=""></div><span class="caps muted">Familles</span><h3>Carnets de naissance</h3><p>Six univers, de l'attente aux 3 ans</p></a>
+      <a class="tile" href="#renard"><div class="vit"><img src="img/renard1.jpg" alt=""></div><span class="caps muted">0 à 3 ans</span><h3>Enfants</h3><p>La série Le petit Renard</p></a>
+      <a class="tile" href="#noel"><div class="vit"><img src="img/nanouk.jpg" alt=""></div><span class="caps muted">3 à 7 ans</span><h3>Noël</h3><p>Trois contes autour du monde</p></a>
+      <a class="tile" href="#ados"><div class="vit"><img src="img/marees.jpg" alt=""></div><span class="caps muted">10 à 15 ans</span><h3>Romans ados</h3><p>Six séries, six univers</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="range" id="naissance">
+  <div class="wrap">
+    <div class="range-head">
+      <div><span class="caps muted">À remplir et à garder · 21,6 × 21,6 cm · 74 pages couleur</span><h2>Carnets de naissance</h2></div>
+      <p>Grossesse, naissance, famille, premières fois, anniversaires : des pages illustrées à l'aquarelle et de grands cadres pour coller les photos. Couverture rigide, un cadeau à garder toute une vie.</p>
+    </div>
+    <div class="grid g3" data-grid="naissance"></div>
+    <div class="soon">
+      <div><span class="caps muted">Bientôt</span><h3>Livres d'or et livres de noces</h3><p>Des livres à faire signer par vos invités, pour garder les mots de ce grand jour.</p></div>
+      <div><span class="caps muted">Bientôt</span><h3>Carnets de santé</h3><p>Fille, garçon ou neutre.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="range" id="renard">
+  <div class="wrap">
+    <div class="range-head">
+      <div><span class="caps muted">0 à 3 ans · Série Le petit Renard</span><h2>Enfants</h2></div>
+      <p>Des contes doux pour le moment du coucher, illustrés pleine page.</p>
+    </div>
+    <div class="grid g2" data-grid="renard"></div>
+  </div>
+</section>
+
+<section class="range" id="noel">
+  <div class="wrap">
+    <div class="range-head">
+      <div><span class="caps muted">3 à 7 ans · Édition de fêtes</span><h2>Noël</h2></div>
+      <p>Trois voyages illustrés pour découvrir les traditions de Noël et du Nouvel An à travers le monde.</p>
+    </div>
+    <div class="grid g3" data-grid="noel"></div>
+  </div>
+</section>
+
+<section class="range" id="ados">
+  <div class="wrap">
+    <div class="range-head">
+      <div><span class="caps muted">10 à 15 ans · Tome 1</span><h2>Romans ados</h2></div>
+      <p>Enquête, fantasy, survie, jeu vidéo : six premiers tomes illustrés pour six envies de lecture.</p>
+    </div>
+    <div class="grid g3" data-grid="ados"></div>
+  </div>
+</section>
+
+<section class="edito" id="apropos">
+  <div class="pic" role="img" aria-label="Illustration du petit Renard sous la lune"></div>
+  <div class="txt">
+    <span class="caps muted">La maison</span>
+    <h2>Un couple, deux initiales et une même envie</h2>
+    <p>Derrière H&amp;C Production, il y a un couple, deux initiales et une même envie : créer de beaux livres pour toute la famille.</p>
+    <p>Nous créons des livres pour toute la famille : des albums tendres pour les tout-petits, des contes de Noël lumineux, des romans d’aventure et de mystère pour les ados, et de beaux carnets pour garder une trace des moments importants de la vie.</p>
+    <p>Chaque livre est pensé avec soin, pour les enfants comme pour les parents qui les liront à voix haute.</p>
+    <blockquote>Merci de faire partie de l’aventure ! Si un de nos livres vous a plu, un petit avis nous aide énormément à faire connaître nos histoires.</blockquote>
+    <a class="link" href="#contact">Nous écrire</a>
+  </div>
+</section>
+
+<div class="services">
+  <div class="svc"><span class="caps muted">Formats</span><h3>Relié, broché et ebook</h3><p>Les carnets et les romans existent en couverture rigide, les albums aussi en ebook.</p></div>
+  <div class="svc"><span class="caps muted">Aperçu</span><h3>Feuilletez avant d'acheter</h3><p>Chaque livre s'ouvre ici sur quelques vraies pages.</p></div>
+  <div class="svc"><span class="caps muted">Commande</span><h3>Imprimé à la demande</h3><p>Chaque livre est imprimé à votre commande par Lulu ou Amazon, puis livré chez vous.</p></div>
+</div>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot">
+      <div><h4>Contact</h4><p class="muted" style="margin:0">Une question sur nos livres :</p>
+        <div class="mailrow"><span class="mail" id="mail">contacts@hcproduction.be</span><button class="copy" id="copyMail" type="button">Copier</button></div></div>
+      <div><h4>Collections</h4><ul><li><a href="#naissance">Carnets de naissance</a></li><li><a href="#renard">Enfants 0-3 ans</a></li><li><a href="#noel">Noël</a></li><li><a href="#ados">Romans ados</a></li></ul></div>
+      <div><h4>Où acheter</h4><ul><li><a href="https://www.lulu.com/search?q=H%26C%20Production" target="_blank" rel="noopener">Librairie Lulu (relié)</a></li><li><a href="https://www.amazon.fr/s?k=H%26C+Production" target="_blank" rel="noopener">Amazon (broché et Kindle)</a></li><li><a href="https://www.kobo.com/be/fr/search?query=H%26C%20Production" target="_blank" rel="noopener">Kobo (ebook)</a></li></ul></div>
+      <div><h4>Suivre</h4><ul><li><a href="https://www.facebook.com/hcproduction.officiel" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.instagram.com/hcproduction.officiel/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+    </div>
+    <div class="base caps"><img src="img/logo.png" alt="H&amp;C Production"><span>© 2026 · H&amp;C Production</span></div>
+  </div>
+</footer>
+
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-labelledby="vTitle">
+  <div class="vbar">
+    <div class="t"><b id="vTitle"></b><span id="vCount"></span></div>
+    <button class="vclose" id="vClose" type="button" aria-label="Fermer l'aperçu"><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  </div>
+  <div class="vstage">
+    <button class="vnav" id="vPrev" type="button" aria-label="Page précédente"><svg viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8"/></svg></button>
+    <div class="vpage" id="vPage"></div>
+    <button class="vnav" id="vNext" type="button" aria-label="Page suivante"><svg viewBox="0 0 24 24"><path d="M9 4l8 8-8 8"/></svg></button>
+  </div>
+  <div class="vfoot">
+    <div class="thumbs" id="vThumbs"></div>
+    <div class="vbuy" id="vBuy"></div>
+  </div>
+  <div class="vhint">Aperçu de quelques pages · glissez ou utilisez les flèches</div>
+</div>
+
+<script>
+const lulu=t=>"https://www.lulu.com/search?q="+encodeURIComponent(t);
+const amz=t=>"https://www.amazon.fr/s?k="+encodeURIComponent(t+" H&C Production");
+const P=(k,ns)=>ns.map(n=>`img/p_${k}_${n}.jpg`);
+const CAR=[4,5,17,24,25,33,46,50];
+const BOOKS=[
+ {id:"jardin",grid:"naissance",sq:1,cover:"c_jardin",name:"Mon jardin enchanté",tag:"Fille ou garçon",desc:"Une petite souris parmi les coquelicots. De l'attente jusqu'à la première bougie.",price:"34,99 €",fmt:"relié",pages:P("jardin",CAR),buy:[["Lulu","https://www.lulu.com/shop/hc-production/mon-jardin-enchant%C3%A9/hardcover/product-gj5wp5z.html"]]},
+ {id:"ocean",grid:"naissance",sq:1,cover:"c_ocean",name:"Mon petit océan",tag:"Fille ou garçon",desc:"Une baleine tendre et des vagues douces, jusqu'à la première bougie.",price:"34,99 €",fmt:"relié",pages:P("ocean",CAR),buy:[["Lulu","https://www.lulu.com/shop/hc-production/mon-petit-oc%C3%A9an/hardcover/product-zmvpzdk.html"]]},
+ {id:"nuage",grid:"naissance",sq:1,cover:"c_nuage",name:"Mon petit nuage",tag:"Fille ou garçon",desc:"Un ourson endormi sur un nuage, jusqu'à la première bougie.",price:"34,99 €",fmt:"relié",pages:P("nuage",CAR),buy:[["Lulu","https://www.lulu.com/shop/hc-production/mon-petit-nuage/hardcover/product-p6mpwvd.html"]]},
+ {id:"merveille",grid:"naissance",sq:1,cover:"c_merveille",name:"Ma petite merveille",tag:"Pour une fille",desc:"Pivoines et papillons. De l'attente jusqu'aux 3 ans.",price:"34,99 €",fmt:"relié",pages:P("merveille",CAR),buy:[["Lulu","https://www.lulu.com/shop/hc-production/ma-petite-merveille/hardcover/product-57nzwz7.html"]]},
+ {id:"aventurier",grid:"naissance",sq:1,cover:"c_aventurier",name:"Mon petit aventurier",tag:"Pour un garçon",desc:"Le carnet de bord d'un petit explorateur, jusqu'à ses 3 ans.",price:"34,99 €",fmt:"relié",pages:P("aventurier",CAR),buy:[["Lulu","https://www.lulu.com/shop/hc-production/mon-petit-aventurier/hardcover/product-gj5wp6y.html"]]},
+ {id:"cosmos",grid:"naissance",sq:1,cover:"c_cosmos",name:"Mon petit cosmos",tag:"Fille ou garçon",desc:"La tête dans les étoiles, de l'attente jusqu'aux 3 ans.",price:"34,99 €",fmt:"relié",pages:P("cosmos",CAR),buy:[["Lulu","https://www.lulu.com/shop/hc-production/mon-petit-cosmos/hardcover/product-rm2pwnr.html"]]},
+
+ {id:"renard1",grid:"renard",cover:"renard1",name:"La forêt des lucioles",tag:"Tome 1",desc:"Un conte pour s'endormir, au cœur d'une forêt qui s'allume de lucioles.",price:"11,99 €",fmt:"broché",pages:P("renard1",["t1-p7","t1-p9","t1-p10","t1-p12","t1-p15"]),buy:[["Amazon","https://www.amazon.fr/dp/B0HN2BQBH5"]]},
+ {id:"renard2",grid:"renard",cover:"renard2",name:"L'étoile perdue",tag:"Tome 2",desc:"Le retour du petit renard, pour une nouvelle aventure sous les étoiles.",price:"11,99 €",fmt:"broché",pages:P("renard2",["t2-p7","t2-p10","t2-p12","t2-p14","t2-p17"]),buy:[["Amazon","https://www.amazon.fr/dp/B0HNDT836S"]]},
+
+ {id:"pepin",grid:"noel",cover:"pepin",name:"Pépin et la lettre de Dakar",desc:"Un petit lutin veut offrir la neige à un enfant de Dakar.",price:"19,99 €",fmt:"relié · ebook 3,99 €",pages:P("pepin",[4,5,7,11,13,22]),buy:[["Lulu","https://www.lulu.com/shop/hc-production/p%C3%A9pin-et-la-lettre-de-dakar/hardcover/product-w48pk9z.html"],["Amazon","https://www.amazon.fr/dp/B0HNJ2JDBW"],["Kobo","https://www.kobo.com/be/fr/ebook/pepin-et-la-lettre-de-dakar"]]},
+ {id:"nanouk",grid:"noel",cover:"nanouk",name:"Nanouk et le renne des aurores",desc:"Au Grand Nord, une petite fille rallume les lumières du ciel.",price:"19,99 €",fmt:"relié · ebook 3,99 €",pages:P("nanouk",[4,5,7,11,13,22]),buy:[["Lulu","https://www.lulu.com/shop/hc-production/nanouk-et-le-renne-des-aurores/hardcover/product-nv5p9nv.html"],["Amazon","https://www.amazon.fr/dp/B0HNH35GTF"],["Kobo","https://www.kobo.com/be/fr/ebook/nanouk-et-le-renne-des-aurores"]]},
+ {id:"etoile",grid:"noel",cover:"etoile",name:"La petite étoile du Nouvel An",desc:"Lili suit minuit de pays en pays, du Japon à la Polynésie.",price:"19,99 €",fmt:"relié · ebook 3,99 €",pages:P("etoile",[4,5,7,11,13,22]),buy:[["Lulu","https://www.lulu.com/shop/hc-production/la-petite-%C3%A9toile-du-nouvel-an/hardcover/product-nv5pmg9.html"],["Kobo","https://www.kobo.com/be/fr/ebook/la-petite-etoile-du-nouvel-an"]]},
+
+ {id:"ines",grid:"ados",cover:"ines",name:"Les Carnets d'Inès",tag:"Amitié",desc:"Un carnet secret de 1998 au fond d'un casier, à Bruxelles.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("ines",[1,3,4,19,25]),buy:[["Lulu","https://www.lulu.com/shop/hc-production/les-carnets-din%C3%A8s/hardcover/product-gj5w99m.html"],["Kobo","https://www.kobo.com/be/fr/ebook/les-carnets-d-ines"]]},
+ {id:"bellerive",grid:"ados",cover:"bellerive",name:"Mystère à Belle-Rive",tag:"Enquête",desc:"Un saphir volé dans un manoir, une légende de Dame Blanche.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("bellerive",[1,3,4,7,16]),buy:[["Lulu","https://www.lulu.com/shop/hc-production/myst%C3%A8re-%C3%A0-belle-rive/hardcover/product-p6mpj4j.html"],["Kobo","https://www.kobo.com/be/fr/ebook/mystere-a-belle-rive"]]},
+ {id:"marees",grid:"ados",cover:"marees",name:"La Gardienne des Marées",tag:"Fantasy",desc:"Le jour de ses quatorze ans, Nayla entend l'océan lui parler.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("marees",[1,3,4,13,18]),buy:[["Lulu","https://www.lulu.com/shop/hc-production/la-gardienne-des-mar%C3%A9es/hardcover/product-57nzjmv.html"],["Kobo","https://www.kobo.com/be/fr/ebook/la-gardienne-des-marees"]]},
+ {id:"kael",grid:"ados",cover:"kael",name:"Kael et le Dragon de Cendre",tag:"Dragons",desc:"Le dernier œuf de dragon du royaume de Valdorn.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("kael",[1,3,4,12,18]),buy:[["Lulu","https://www.lulu.com/shop/hc-production/kael-et-le-dragon-de-cendre/hardcover/product-w48pqm5.html"],["Kobo","https://www.kobo.com/be/fr/ebook/kael-et-le-dragon-de-cendre"]]},
+ {id:"grisval",grid:"ados",cover:"grisval",name:"Les Survivants de Grisval",tag:"Survie",desc:"Un village vidé en une nuit, et un brouillard qui revient chaque soir.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("grisval",[1,3,4,13,18]),buy:[["Lulu","https://www.lulu.com/shop/hc-production/les-survivants-de-grisval/hardcover/product-95vgjpn.html"],["Kobo","https://www.kobo.com/be/fr/ebook/les-survivants-de-grisval"]]},
+ {id:"respawn",grid:"ados",cover:"respawn",name:"Respawn",tag:"Jeu vidéo",desc:"Treize niveaux, trois vies, un frère à sauver.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("respawn",[1,3,4,7,27]),buy:[["Lulu","https://www.lulu.com/shop/hc-production/respawn/hardcover/product-kv4pjzv.html"],["Kobo","https://www.kobo.com/be/fr/ebook/respawn-7"]]}
+];
+const byId=Object.fromEntries(BOOKS.map(b=>[b.id,b]));
+const eye='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5c3-1 6-1 9 1 3-2 6-2 9-1v13c-3-1-6-1-9 1-3-2-6-2-9-1z"/><path d="M12 6.5v13"/></svg>';
+for(const b of BOOKS){
+  const g=document.querySelector(`[data-grid="${b.grid}"]`);
+  const el=document.createElement("article");el.className="prod";
+  el.innerHTML=`<button class="vit" type="button" data-open="${b.id}" aria-label="Feuilleter ${b.name}">${b.tag?`<span class="badge">${b.tag}</span>`:""}<img ${b.sq?'class="sq"':""} src="img/${b.cover}.jpg" alt="${b.name}" loading="lazy"><span class="peek">${eye}Feuilleter · ${b.pages.length} pages</span></button>
+  <span class="name">${b.name}</span><p class="desc">${b.desc}</p><span class="price">${b.price} <span>· ${b.fmt}</span></span>
+  <div class="buy">${b.buy.map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join("")}</div>`;
+  g.appendChild(el);
+}
+
+// Feuilleteur
+const V=document.getElementById("viewer"),vPage=document.getElementById("vPage"),vThumbs=document.getElementById("vThumbs");
+let cur=null,idx=0,lastFocus=null;
+const wide=()=>matchMedia("(min-width:761px)").matches;
+function step(){return cur&&cur.sq&&wide()?2:1}
+function show(i){
+  const n=cur.pages.length,s=step();
+  idx=Math.max(0,Math.min(i,n-1)); if(s===2) idx-=idx%2;
+  const pair=s===2?cur.pages.slice(idx,idx+2):[cur.pages[idx]];
+  vPage.className="vpage"+(pair.length===2?" spread":"");
+  vPage.innerHTML=pair.map((p,j)=>`<img src="${p}" alt="${cur.name}, page d'aperçu ${idx+j+1}">`).join("");
+  document.getElementById("vCount").textContent=pair.length===2?`Pages ${idx+1}-${idx+2} sur ${n} en aperçu`:`Page ${idx+1} sur ${n} en aperçu`;
+  document.getElementById("vPrev").disabled=idx===0;
+  document.getElementById("vNext").disabled=idx+s>=n;
+  vThumbs.querySelectorAll("button").forEach((t,j)=>t.setAttribute("aria-current",j>=idx&&j<idx+pair.length?"true":"false"));
+  const a=vThumbs.children[idx]; if(a) a.scrollIntoView({block:"nearest",inline:"nearest"});
+  const nx=cur.pages[idx+s]; if(nx){const im=new Image();im.src=nx}
+}
+function open(id){
+  cur=byId[id]; if(!cur) return; lastFocus=document.activeElement;
+  document.getElementById("vTitle").textContent=cur.name;
+  vThumbs.innerHTML=cur.pages.map((p,j)=>`<button type="button" aria-label="Aller à la page ${j+1}"><img src="${p}" alt="" loading="lazy"></button>`).join("");
+  vThumbs.querySelectorAll("button").forEach((t,j)=>t.onclick=()=>show(j));
+  document.getElementById("vBuy").innerHTML=`<span class="p">${cur.price} · ${cur.fmt}</span>`+cur.buy.map(([l,u])=>`<a href="${u}" target="_blank" rel="noopener">Commander sur ${l}</a>`).join("");
+  V.hidden=false; document.body.style.overflow="hidden"; show(0);
+  document.getElementById("vClose").focus();
+}
+function close(){V.hidden=true;document.body.style.overflow="";cur=null;if(lastFocus)lastFocus.focus()}
+document.addEventListener("click",e=>{const o=e.target.closest("[data-open]");if(o){open(o.dataset.open)}});
+document.getElementById("vClose").onclick=close;
+document.getElementById("vPrev").onclick=()=>show(idx-step());
+document.getElementById("vNext").onclick=()=>show(idx+step());
+V.addEventListener("click",e=>{if(e.target===V||e.target.classList.contains("vstage"))close()});
+document.addEventListener("keydown",e=>{if(V.hidden)return;if(e.key==="Escape")close();if(e.key==="ArrowRight")show(idx+step());if(e.key==="ArrowLeft")show(idx-step())});
+let sx=null;vPage.addEventListener("pointerdown",e=>{sx=e.clientX});
+vPage.addEventListener("pointerup",e=>{if(sx===null)return;const d=e.clientX-sx;sx=null;if(Math.abs(d)>40)show(idx+(d<0?step():-step()));else if(!wide())show(idx+1<cur.pages.length?idx+1:0)});
+addEventListener("resize",()=>{if(cur)show(idx)});
+if(location.hash&&byId[location.hash.slice(1)])open(location.hash.slice(1));
+
+document.getElementById("copyMail").onclick=async e=>{const t=document.getElementById("mail").textContent;try{await navigator.clipboard.writeText(t);e.target.textContent="Copié"}catch(_){const r=document.createRange();r.selectNodeContents(document.getElementById("mail"));const s=getSelection();s.removeAllRanges();s.addRange(r);e.target.textContent="Sélectionné"}setTimeout(()=>e.target.textContent="Copier",1800)};
+</script>
