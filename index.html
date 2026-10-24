@@ -74,7 +74,7 @@ nav.main a:hover::after{left:0;right:0}
 .hero .wrap{display:flex;flex-direction:column;align-items:center;text-align:center;padding-block:56px 76px}
 .stage{display:flex;justify-content:center;align-items:flex-end;gap:clamp(14px,3vw,40px);margin-bottom:46px}
 .stage button{border:0;padding:0;background:none;cursor:pointer;position:relative}
-.stage img{box-shadow:0 2px 3px rgba(0,0,0,.08),16px 26px 44px var(--shadow);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.stage img{aspect-ratio:700/699;height:auto;display:block;box-shadow:0 2px 3px rgba(0,0,0,.08),16px 26px 44px var(--shadow);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 .stage button:hover img{transform:translateY(-6px)}
 .stage .s1 img{width:min(170px,24vw)}
 .stage .s2 img{width:min(250px,34vw)}
@@ -224,7 +224,7 @@ footer{padding-block:84px 30px;background:var(--bg)}
   <div class="wrap">
     <div class="top">
       <div class="side caps"><a href="#apropos">La maison</a></div>
-      <a class="logo" href="#top"><img src="img/logo.png" alt="H&amp;C Production"></a>
+      <a class="logo" href="#top"><img src="img/logo.png" width="101" height="70" alt="H&amp;C Production"></a>
       <div class="side r caps"><a href="#contact">Contact</a></div>
     </div>
     <nav class="main caps" aria-label="Collections">
@@ -243,9 +243,9 @@ footer{padding-block:84px 30px;background:var(--bg)}
 <section class="hero">
   <div class="wrap">
     <div class="stage">
-      <button class="s1" type="button" data-open="merveille" aria-label="Feuilleter Ma petite merveille"><img src="img/c_merveille.jpg" alt="Ma petite merveille"></button>
-      <button class="s2" type="button" data-open="jardin" aria-label="Feuilleter Mon jardin enchanté"><img src="img/c_jardin.jpg" alt="Mon jardin enchanté"></button>
-      <button class="s3" type="button" data-open="cosmos" aria-label="Feuilleter Mon petit cosmos"><img src="img/c_cosmos.jpg" alt="Mon petit cosmos"></button>
+      <button class="s1" type="button" data-open="merveille" aria-label="Feuilleter Ma petite merveille"><img src="img/c_merveille.jpg" width="700" height="699" alt="Ma petite merveille"></button>
+      <button class="s2" type="button" data-open="jardin" aria-label="Feuilleter Mon jardin enchanté"><img src="img/c_jardin.jpg" width="700" height="699" alt="Mon jardin enchanté"></button>
+      <button class="s3" type="button" data-open="cosmos" aria-label="Feuilleter Mon petit cosmos"><img src="img/c_cosmos.jpg" width="700" height="699" alt="Mon petit cosmos"></button>
     </div>
     <span class="caps muted">Nouveau · Carnets de naissance reliés</span>
     <h1>Des livres qui <em>gardent</em> les plus beaux souvenirs</h1>
