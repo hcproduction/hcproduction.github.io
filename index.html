@@ -417,7 +417,7 @@ const BOOKS=[
  {id:"grisval",grid:"ados",cover:"grisval",name:"Les Survivants de Grisval",tag:"Survie",desc:"Un village vidé en une nuit, et un brouillard qui revient chaque soir.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("grisval",[1,3,4,13,18]),total:53,buy:[["Lulu","https://www.lulu.com/shop/hc-production/les-survivants-de-grisval/hardcover/product-95vgjpn.html"],["Kobo","https://www.kobo.com/be/fr/ebook/les-survivants-de-grisval"],["Ebook · 5,99 €","https://payhip.com/b/DsUem"]]},
  {id:"respawn",grid:"ados",cover:"respawn",name:"Respawn",tag:"Jeu vidéo",desc:"Treize niveaux, trois vies, un frère à sauver.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("respawn",[1,3,4,7,27]),total:54,buy:[["Lulu","https://www.lulu.com/shop/hc-production/respawn/hardcover/product-kv4pjzv.html"],["Kobo","https://www.kobo.com/be/fr/ebook/respawn-7"],["Ebook · 5,99 €","https://payhip.com/b/bx82m"]]}
 ];
-const PAYON=false;
+const PAYON=true;
 const buyA=(l,u,pre)=>u.includes("payhip.com/b/")?(!PAYON?"":`<a href="${u}" class="dl" data-payhip="${u.split("/b/")[1]}" target="_blank" rel="noopener">${l}</a>`):`<a href="${u}" target="_blank" rel="noopener">${pre}${l}</a>`;
 document.addEventListener("click",e=>{const a=e.target.closest("a[data-payhip]");if(!a)return;if(window.Payhip&&Payhip.Checkout&&Payhip.Checkout.open){e.preventDefault();Payhip.Checkout.open({product:a.dataset.payhip});}});
 const byId=Object.fromEntries(BOOKS.map(b=>[b.id,b]));
