@@ -87,7 +87,8 @@ button:disabled{opacity:.5;cursor:default}
 </main>
 <script>
 const API="https://hc-commande.contacts-hcproduction.workers.dev";
-const IMG={"cosmos":"img/c_cosmos.jpg","pack-cosmos":"img/c_cosmos.jpg"};
+const imgOf=k=>{k=k.replace(/^pack-/,"");if(k.startsWith("noces-"))return"img/n_"+k.slice(6)+".jpg";if(k.startsWith("or-"))return"img/o_"+k.slice(3)+".jpg";return"img/c_"+k+".jpg"};
+const baseOf=k=>k.replace(/^pack-/,"");
 const $=id=>document.getElementById(id), eur=n=>Number(n).toFixed(2).replace(".",",")+" €";
 let P={}, cur=new URLSearchParams(location.search).get("p")||"cosmos", quoted=false;
 function msg(t,c){$("msg").textContent=t;$("msg").className="msg "+(c||"")}
@@ -96,8 +97,8 @@ function body(){return{product:cur,quantity:+$("qty").value,shipping:document.qu
 function reset(){quoted=false;$("pay").disabled=true;$("ship").textContent="à calculer";$("offl").hidden=true;
   if(P[cur]){$("sub").textContent=eur(P[cur].price*$("qty").value);$("tot").textContent="–"}}
 function renderProds(){
-  $("prods").innerHTML=Object.entries(P).map(([k,p])=>`<label class="opt${k===cur?" on":""}"><input type="radio" name="prod" value="${k}"${k===cur?" checked":""}><span><b>${p.name}</b><small>${eur(p.price)}${p.cards?" · cartes à imprimer incluses":""}</small></span></label>`).join("");
-  document.querySelectorAll("[name=prod]").forEach(r=>r.onchange=()=>{cur=r.value;renderProds();$("pname").textContent=P[cur].name;$("pimg").src=IMG[cur]||IMG.cosmos;reset()});
+  $("prods").innerHTML=Object.entries(P).filter(([k])=>baseOf(k)===baseOf(cur)).map(([k,p])=>`<label class="opt${k===cur?" on":""}"><input type="radio" name="prod" value="${k}"${k===cur?" checked":""}><span><b>${p.name}</b><small>${eur(p.price)}${p.cards?" · cartes à imprimer incluses":""}</small></span></label>`).join("");
+  document.querySelectorAll("[name=prod]").forEach(r=>r.onchange=()=>{cur=r.value;renderProds();$("pname").textContent=P[cur].name;$("pimg").src=imgOf(cur);reset()});
 }
 function need(){const b=body(),a=b.address;for(const k of["name","email","phone_number","street1","postcode","city"]) if(!a[k].trim()){msg("Merci de compléter l'adresse de livraison.","err");return null}return b}
 async function quote(){const b=need();if(!b)return;msg("Calcul en cours…");$("calc").disabled=true;
@@ -114,7 +115,7 @@ async function pay(){if(!quoted)return quote();const b=need();if(!b)return;$("pa
 $("calc").onclick=quote;$("apply").onclick=quote;$("pay").onclick=pay;
 document.querySelectorAll("input,select").forEach(e=>{if(e.name!=="prod")e.addEventListener("change",reset)});
 document.querySelectorAll("[name=ship]").forEach(r=>r.addEventListener("change",()=>document.querySelectorAll(".opt").forEach(o=>o.classList.toggle("on",o.querySelector("input").checked))));
-fetch(API+"/produits").then(r=>r.json()).then(d=>{P=d;if(!P[cur])cur=Object.keys(P)[0];renderProds();$("pname").textContent=P[cur].name;$("pimg").src=IMG[cur]||IMG.cosmos;reset()}).catch(()=>msg("La boutique est momentanément indisponible.","err"));
+fetch(API+"/produits").then(r=>r.json()).then(d=>{P=d;if(!P[cur])cur=Object.keys(P)[0];renderProds();$("pname").textContent=P[cur].name;$("pimg").src=imgOf(cur);reset()}).catch(()=>msg("La boutique est momentanément indisponible.","err"));
 </script>
 </body>
 </html>
