@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Merci pour votre commande – H&amp;C Production</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+:root{--ink:#141213;--grey:#6c6762;--line:#e2ddd5;--plum:#7b2d52;--stone:#f3f0eb}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:300 16px/1.6 "Jost",Futura,sans-serif}
+header{padding:22px 16px;text-align:center;border-bottom:1px solid var(--line)}header a{font-family:"Bodoni Moda",serif;font-size:24px;color:var(--ink);text-decoration:none}
+main{max-width:620px;margin:0 auto;padding:40px 16px 60px;text-align:center}
+h1{font:400 32px/1.2 "Bodoni Moda",serif;margin:0 0 12px}p{color:var(--grey)}
+.box{background:var(--stone);border-radius:10px;padding:22px;margin:24px 0;text-align:left}
+.dl{display:block;background:var(--plum);color:#fff;text-decoration:none;border-radius:6px;padding:13px 16px;margin:10px 0;font-weight:500;text-align:center}
+a.back{color:var(--plum)}
+</style>
+</head>
+<body>
+<header><a href="/">H&amp;C Production</a></header>
+<main>
+  <h1 id="t">Un instant…</h1>
+  <p id="s">Nous vérifions votre paiement.</p>
+  <div class="box" id="box" hidden></div>
+  <p><a class="back" href="/">Retour à la boutique</a></p>
+</main>
+<script>
+const API="https://hc-commande.contacts-hcproduction.workers.dev";
+const id=new URLSearchParams(location.search).get("id"), $=e=>document.getElementById(e);
+let tries=0;
+async function check(){
+  if(!id){$("t").textContent="Commande introuvable";$("s").textContent="Si vous avez payé, écrivez-nous à contacts@hcproduction.be.";return}
+  try{const d=await (await fetch(API+"/statut?id="+encodeURIComponent(id))).json();
+    if(d.status==="paid"){
+      $("t").textContent="Merci pour votre commande !";
+      $("s").textContent="Votre paiement est confirmé. Votre livre part à l'impression et vous sera livré à l'adresse indiquée.";
+      let h=`<b>${d.name||""}</b><br>Total payé : ${String(d.total).replace(".",",")} €`;
+      if(d.downloads&&d.downloads.length){h+=`<p style="margin:16px 0 4px;color:#141213">Vos cartes à imprimer :</p>`+d.downloads.map(x=>`<a class="dl" href="${x.url}" rel="noopener">Télécharger – ${x.label}</a>`).join("")+`<p style="font-size:13px">Pensez à les enregistrer sur votre appareil.</p>`}
+      $("box").innerHTML=h;$("box").hidden=false;return}
+    if(["open","pending","authorized"].includes(d.status)&&tries++<10){setTimeout(check,3000);return}
+    if(["open","pending"].includes(d.status)){$("t").textContent="Paiement en cours de traitement";$("s").textContent="Rechargez cette page dans quelques minutes.";return}
+    $("t").textContent="Paiement non abouti";$("s").innerHTML='Aucun montant n\'a été débité. <a class="back" href="commande.html">Réessayer</a>';
+  }catch(e){if(tries++<5)setTimeout(check,3000);else{$("t").textContent="Vérification impossible";$("s").textContent="Rechargez la page dans un instant."}}
+}
+check();
+</script>
+</body>
+</html>
