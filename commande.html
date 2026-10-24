@@ -87,7 +87,7 @@ button:disabled{opacity:.5;cursor:default}
 </main>
 <script>
 const API="https://hc-commande.contacts-hcproduction.workers.dev";
-const imgOf=k=>{k=k.replace(/^pack-/,"");if(k.startsWith("noces-"))return"img/n_"+k.slice(6)+".jpg";if(k.startsWith("or-"))return"img/o_"+k.slice(3)+".jpg";return"img/c_"+k+".jpg"};
+const imgOf=k=>{k=k.replace(/^pack-/,"");if(k.startsWith("noces-"))return"img/n_"+k.slice(6)+".jpg";if(k.startsWith("or-"))return"img/o_"+k.slice(3)+".jpg";if(["cosmos","merveille","jardin","aventurier","nuage","ocean"].includes(k))return"img/c_"+k+".jpg";return"img/"+k+".jpg"};
 const baseOf=k=>k.replace(/^pack-/,"");
 const $=id=>document.getElementById(id), eur=n=>Number(n).toFixed(2).replace(".",",")+" €";
 let P={}, cur=new URLSearchParams(location.search).get("p")||"cosmos", quoted=false;
