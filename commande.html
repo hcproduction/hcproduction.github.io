@@ -44,6 +44,11 @@ button:disabled{opacity:.5;cursor:default}
 
   <h2>Votre choix</h2>
   <div id="prods"></div>
+  <div id="kitbox" hidden style="border:1px solid var(--line);border-radius:8px;padding:12px;margin:8px 0;background:#fbf6f8">
+    <label for="kit" style="margin-top:0;color:var(--plum);font-weight:500">🎁 Votre kit de lettres offert : choisissez un style</label>
+    <select id="kit"><option value="">– Choisir un style –</option><option>Père Noël</option><option>Mère Noël</option><option>Saint Nicolas</option><option>Lutins</option><option>Rennes</option><option>Forêt enchantée</option></select>
+    <small style="display:block;color:var(--grey);margin-top:6px">Lettre, réponse, liste de cadeaux et diplôme à imprimer, à télécharger après le paiement.</small>
+  </div>
   <label for="qty">Quantité</label>
   <select id="qty"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
 
@@ -89,6 +94,8 @@ button:disabled{opacity:.5;cursor:default}
 const API="https://hc-commande.contacts-hcproduction.workers.dev";
 const imgOf=k=>{k=k.replace(/^pack-/,"");if(k.startsWith("noces-"))return"img/n_"+k.slice(6)+".jpg";if(k.startsWith("or-"))return"img/o_"+k.slice(3)+".jpg";if(["cosmos","merveille","jardin","aventurier","nuage","ocean"].includes(k))return"img/c_"+k+".jpg";return"img/"+k+".jpg"};
 const baseOf=k=>k.replace(/^pack-/,"");
+const NOEL=["etoile","nanouk","pepin"]; const kitOn=()=>NOEL.includes(cur);
+function showKit(){$("kitbox").hidden=!kitOn()}
 const $=id=>document.getElementById(id), eur=n=>Number(n).toFixed(2).replace(".",",")+" €";
 let P={}, cur=new URLSearchParams(location.search).get("p")||"cosmos", quoted=false;
 function msg(t,c){$("msg").textContent=t;$("msg").className="msg "+(c||"")}
@@ -98,9 +105,10 @@ function reset(){quoted=false;$("pay").disabled=true;$("ship").textContent="à c
   if(P[cur]){$("sub").textContent=eur(P[cur].price*$("qty").value);$("tot").textContent="–"}}
 function renderProds(){
   $("prods").innerHTML=Object.entries(P).filter(([k])=>baseOf(k)===baseOf(cur)).map(([k,p])=>`<label class="opt${k===cur?" on":""}"><input type="radio" name="prod" value="${k}"${k===cur?" checked":""}><span><b>${p.name}</b><small>${eur(p.price)}${p.cards?(["etoile","nanouk","pepin"].includes(k)?" · kit lettres au Père Noël offert":" · cartes à imprimer incluses"):""}</small></span></label>`).join("");
-  document.querySelectorAll("[name=prod]").forEach(r=>r.onchange=()=>{cur=r.value;renderProds();$("pname").textContent=P[cur].name;$("pimg").src=imgOf(cur);reset()});
+  document.querySelectorAll("[name=prod]").forEach(r=>r.onchange=()=>{cur=r.value;renderProds();showKit();$("pname").textContent=P[cur].name;$("pimg").src=imgOf(cur);reset()});
 }
-function need(){const b=body(),a=b.address;for(const k of["name","email","phone_number","street1","postcode","city"]) if(!a[k].trim()){msg("Merci de compléter l'adresse de livraison.","err");return null}return b}
+function need(){if(kitOn()&&!$("kit").value){msg("Choisissez le style de votre kit de lettres offert.","err");$("kit").focus();return null}
+  const b=body(),a=b.address;for(const k of["name","email","phone_number","street1","postcode","city"]) if(!a[k].trim()){msg("Merci de compléter l'adresse de livraison.","err");return null}return b}
 async function quote(){const b=need();if(!b)return;msg("Calcul en cours…");$("calc").disabled=true;
   try{const r=await fetch(API+"/devis",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});const d=await r.json();
     if(!r.ok){msg(d.error||"Erreur, réessayez.","err");return}
@@ -108,14 +116,15 @@ async function quote(){const b=need();if(!b)return;msg("Calcul en cours…");$("
     $("offl").hidden=!(+d.off);$("off").textContent="− "+eur(d.off);$("pcode").textContent=d.promo?"("+d.promo+")":"";
     quoted=true;$("pay").disabled=false;msg(d.promo?"Code promo appliqué.":"Total calculé.","ok")}
   catch(e){msg("Connexion impossible, réessayez dans un instant.","err")}finally{$("calc").disabled=false}}
-async function pay(){if(!quoted)return quote();const b=need();if(!b)return;$("pay").disabled=true;msg("Redirection vers le paiement…");
+async function pay(){if(!quoted)return quote();const b=need();if(!b)return;
+  try{if(kitOn())localStorage.setItem("hc_kit",$("kit").value)}catch(e){}$("pay").disabled=true;msg("Redirection vers le paiement…");
   try{const r=await fetch(API+"/commande",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});const d=await r.json();
     if(!r.ok||!d.checkout){msg(d.error||"Erreur, réessayez.","err");$("pay").disabled=false;return}location.href=d.checkout}
   catch(e){msg("Connexion impossible, réessayez.","err");$("pay").disabled=false}}
 $("calc").onclick=quote;$("apply").onclick=quote;$("pay").onclick=pay;
 document.querySelectorAll("input,select").forEach(e=>{if(e.name!=="prod")e.addEventListener("change",reset)});
 document.querySelectorAll("[name=ship]").forEach(r=>r.addEventListener("change",()=>document.querySelectorAll(".opt").forEach(o=>o.classList.toggle("on",o.querySelector("input").checked))));
-fetch(API+"/produits").then(r=>r.json()).then(d=>{P=d;if(!P[cur])cur=Object.keys(P)[0];renderProds();$("pname").textContent=P[cur].name;$("pimg").src=imgOf(cur);reset()}).catch(()=>msg("La boutique est momentanément indisponible.","err"));
+fetch(API+"/produits").then(r=>r.json()).then(d=>{P=d;if(!P[cur])cur=Object.keys(P)[0];renderProds();showKit();$("pname").textContent=P[cur].name;$("pimg").src=imgOf(cur);reset()}).catch(()=>msg("La boutique est momentanément indisponible.","err"));
 </script>
 </body>
 </html>

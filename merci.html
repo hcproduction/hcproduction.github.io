@@ -37,6 +37,16 @@ async function check(){
       $("t").textContent="Merci pour votre commande !";
       $("s").textContent="Votre paiement est confirmé. Votre livre part à l'impression et vous sera livré à l'adresse indiquée.";
       let h=`<b>${d.name||""}</b><br>Total payé : ${String(d.total).replace(".",",")} €`;
+      let dl=d.downloads||[]; const kits=dl.filter(x=>x.label.startsWith("Kit lettres offert"));
+      if(kits.length){ let ch=null; try{ch=localStorage.getItem("hc_kit")}catch(e){}
+        const pick=kits.find(x=>x.label.endsWith(ch||"~"));
+        dl=dl.filter(x=>!x.label.startsWith("Kit lettres offert"));
+        if(pick) dl.push(pick); else {
+          h=`<b>${d.name||""}</b><br>Total payé : ${String(d.total).replace(".",",")} €<p style="margin:16px 0 4px;color:#141213">Choisissez le style de votre kit de lettres offert :</p>`+kits.map(x=>`<a class="dl" href="#" data-s="${x.label.split("– ")[1]}">${x.label.split("– ")[1]}</a>`).join("");
+          $("box").innerHTML=h;$("box").hidden=false;
+          document.querySelectorAll("[data-s]").forEach(a=>a.onclick=e=>{e.preventDefault();try{localStorage.setItem("hc_kit",a.dataset.s)}catch(_){ }location.reload()});return}
+      }
+      d.downloads=dl;
       if(d.downloads&&d.downloads.length){h+=`<p style="margin:16px 0 4px;color:#141213">Vos fichiers à télécharger :</p>`+d.downloads.map(x=>`<a class="dl" href="${x.url}" rel="noopener">Télécharger – ${x.label}</a>`).join("")+`<p style="font-size:13px">Pensez à les enregistrer sur votre appareil.</p>`}
       $("box").innerHTML=h;$("box").hidden=false;return}
     if(["open","pending","authorized"].includes(d.status)&&tries++<10){setTimeout(check,3000);return}
