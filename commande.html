@@ -82,7 +82,7 @@ button:disabled{opacity:.5;cursor:default}
   <button class="sec" id="calc" type="button" style="width:100%;margin-top:14px">Calculer la livraison</button>
   <button class="pay" id="pay" type="button" disabled>Payer en toute sécurité</button>
   <div class="msg" id="msg" role="status"></div>
-  <p class="note">Vous serez redirigé vers la page de paiement sécurisée Mollie, puis ramené sur notre site. Les fichiers inclus dans un pack sont à télécharger dès le paiement confirmé.</p>
+  <p class="note">Vous serez redirigé vers la page de paiement sécurisée Mollie, puis ramené sur notre site. Les fichiers inclus (cartes à imprimer, kit lettres au Père Noël offert) sont à télécharger dès le paiement confirmé.</p>
 </aside>
 </main>
 <script>
@@ -97,7 +97,7 @@ function body(){return{product:cur,quantity:+$("qty").value,shipping:document.qu
 function reset(){quoted=false;$("pay").disabled=true;$("ship").textContent="à calculer";$("offl").hidden=true;
   if(P[cur]){$("sub").textContent=eur(P[cur].price*$("qty").value);$("tot").textContent="–"}}
 function renderProds(){
-  $("prods").innerHTML=Object.entries(P).filter(([k])=>baseOf(k)===baseOf(cur)).map(([k,p])=>`<label class="opt${k===cur?" on":""}"><input type="radio" name="prod" value="${k}"${k===cur?" checked":""}><span><b>${p.name}</b><small>${eur(p.price)}${p.cards?" · cartes à imprimer incluses":""}</small></span></label>`).join("");
+  $("prods").innerHTML=Object.entries(P).filter(([k])=>baseOf(k)===baseOf(cur)).map(([k,p])=>`<label class="opt${k===cur?" on":""}"><input type="radio" name="prod" value="${k}"${k===cur?" checked":""}><span><b>${p.name}</b><small>${eur(p.price)}${p.cards?(["etoile","nanouk","pepin"].includes(k)?" · kit lettres au Père Noël offert":" · cartes à imprimer incluses"):""}</small></span></label>`).join("");
   document.querySelectorAll("[name=prod]").forEach(r=>r.onchange=()=>{cur=r.value;renderProds();$("pname").textContent=P[cur].name;$("pimg").src=imgOf(cur);reset()});
 }
 function need(){const b=body(),a=b.address;for(const k of["name","email","phone_number","street1","postcode","city"]) if(!a[k].trim()){msg("Merci de compléter l'adresse de livraison.","err");return null}return b}
