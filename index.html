@@ -246,6 +246,7 @@ footer{padding-block:84px 30px;background:var(--bg)}
       <a href="#cartes">Faire-part &amp; cartes</a>
       <a href="#renard">Enfants 0-3 ans</a>
       <a href="#noel">Noël</a>
+      <a href="#lettres">Lettres</a>
       <a href="#ados">Romans ados</a>
     </nav>
   </div>
@@ -364,9 +365,22 @@ footer{padding-block:84px 30px;background:var(--bg)}
     <div style="background:#7b1d26;color:#fff;border-radius:14px;padding:18px 22px;margin:0 0 26px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;box-shadow:0 6px 18px rgba(0,0,0,.12)">
       <span style="font-size:34px;line-height:1">🎁</span>
       <div style="flex:1;min-width:220px"><strong style="font-size:18px;letter-spacing:.02em">Offre de Noël</strong><br>
-      Pour chaque conte de Noël <b>relié</b> commandé ici, un <b>kit de lettres au Père Noël à imprimer offert</b> : lettre, réponse, liste de cadeaux et diplôme. 5 styles au choix.</div>
+      Pour chaque conte de Noël <b>relié</b> commandé ici, un <b>kit de lettres au Père Noël à imprimer offert</b> : lettre, réponse, liste de cadeaux et diplôme. 5 styles au choix. <a href="#lettres" style="color:#fff;text-decoration:underline">Les kits sont aussi en vente seuls</a>.</div>
     </div>
     <div class="grid g3" data-grid="noel"></div>
+  </div>
+</section>
+
+<section class="range" id="lettres">
+  <div class="wrap">
+    <div class="range-head">
+      <div><span class="caps muted">Nouveau · PDF à imprimer chez vous</span><h2>Lettres au Père Noël &amp; à Saint Nicolas</h2></div>
+      <p>Un kit illustré pour écrire sa lettre : version petits (à cocher et à dessiner), version grands (à écrire), la réponse à remplir par les parents, la liste de cadeaux et le diplôme de l'enfant le plus sage. Téléchargement immédiat, format A4.</p>
+    </div>
+    <span class="caps muted" style="display:block;margin:0 0 22px">Saint Nicolas · 6 décembre</span>
+    <div class="grid g3" data-grid="lettres-sn"></div>
+    <span class="caps muted" style="display:block;margin:72px 0 22px">Père Noël</span>
+    <div class="grid g3" data-grid="lettres-noel"></div>
   </div>
 </section>
 
@@ -405,7 +419,7 @@ footer{padding-block:84px 30px;background:var(--bg)}
     <div class="foot">
       <div><h4>Contact</h4><p class="muted" style="margin:0">Une question sur nos livres :</p>
         <div class="mailrow"><span class="mail" id="mail">contacts@hcproduction.be</span><button class="copy" id="copyMail" type="button">Copier</button></div></div>
-      <div><h4>Collections</h4><ul><li><a href="#naissance">Carnets de naissance</a></li><li><a href="#noces">Livres de noces</a></li><li><a href="#or">Livres d'or</a></li><li><a href="#renard">Enfants 0-3 ans</a></li><li><a href="#noel">Noël</a></li><li><a href="#ados">Romans ados</a></li></ul></div>
+      <div><h4>Collections</h4><ul><li><a href="#naissance">Carnets de naissance</a></li><li><a href="#noces">Livres de noces</a></li><li><a href="#or">Livres d'or</a></li><li><a href="#renard">Enfants 0-3 ans</a></li><li><a href="#noel">Noël</a></li><li><a href="#lettres">Lettres au Père Noël et à Saint Nicolas</a></li><li><a href="#ados">Romans ados</a></li></ul></div>
       <div><h4>Où acheter</h4><ul><li><a href="https://www.lulu.com/search?q=H%26C%20Production" target="_blank" rel="noopener">Librairie Lulu (relié)</a></li><li><a href="https://www.amazon.fr/s?k=H%26C+Production" target="_blank" rel="noopener">Amazon (broché et Kindle)</a></li><li><a href="https://www.kobo.com/be/fr/search?query=H%26C%20Production" target="_blank" rel="noopener">Kobo (ebook)</a></li></ul></div>
       <div><h4>Suivre</h4><ul><li><a href="https://www.facebook.com/hcproduction.officiel" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.instagram.com/hcproduction.officiel/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.tiktok.com/@hc.production" target="_blank" rel="noopener">TikTok</a></li><li><a href="https://www.snapchat.com/add/h.cproduction" target="_blank" rel="noopener">Snapchat</a></li></ul></div>
     </div>
@@ -458,6 +472,13 @@ const BOOKS=[
  {id:"nanouk",grid:"noel",cover:"nanouk",name:"Nanouk et le renne des aurores",desc:"Au Grand Nord, une petite fille rallume les lumières du ciel.",price:"19,99 €",fmt:"relié · ebook 3,99 €",pages:P("nanouk",[4,5,7,11,13,22]),total:30,buy:[["Livre relié, livré chez vous · 19,99 € · 🎁 kit lettres offert","commande.html?p=nanouk","page"],["Amazon","https://www.amazon.fr/dp/B0HNH35GTF"],["Kobo","https://www.kobo.com/be/fr/ebook/nanouk-et-le-renne-des-aurores"],["Ebook PDF · 3,99 €","https://payhip.com/b/3ytX0"]]},
  {id:"etoile",grid:"noel",cover:"etoile",name:"La petite étoile du Nouvel An",desc:"Lili suit minuit de pays en pays, du Japon à la Polynésie.",price:"19,99 €",fmt:"relié · ebook 3,99 €",pages:P("etoile",[4,5,7,11,13,22]),total:30,buy:[["Livre relié, livré chez vous · 19,99 € · 🎁 kit lettres offert","commande.html?p=etoile","page"],["Kobo","https://www.kobo.com/be/fr/ebook/la-petite-etoile-du-nouvel-an"],["Ebook PDF · 3,99 €","https://payhip.com/b/p2rUs"]]},
 
+ {id:"lsn",grid:"lettres-sn",cover:"lsn",name:"Kit lettres à Saint Nicolas",tag:"Saint Nicolas",desc:"Saint Nicolas et son âne, pour préparer le 6 décembre.",price:"4,99 €",fmt:"PDF à imprimer",pages:P("lsn",[1,2,3,4,5,6]),total:6,buy:[["Télécharger le kit PDF · 4,99 €","https://payhip.com/b/v25Zg","page"]]},
+ {id:"lpn",grid:"lettres-noel",cover:"lpn",name:"Kit lettres au Père Noël",tag:"Père Noël",desc:"Le Père Noël dans son atelier enneigé.",price:"4,99 €",fmt:"PDF à imprimer",pages:P("lpn",[1,2,3,4,5,6]),total:6,buy:[["Télécharger le kit PDF · 4,99 €","https://payhip.com/b/OxS20","page"]]},
+ {id:"lmn",grid:"lettres-noel",cover:"lmn",name:"Kit lettres à la Mère Noël",tag:"Mère Noël",desc:"La Mère Noël et ses biscuits, tout en douceur.",price:"4,99 €",fmt:"PDF à imprimer",pages:P("lmn",[1,2,3,4,5,6]),total:6,buy:[["Télécharger le kit PDF · 4,99 €","https://payhip.com/b/pthK1","page"]]},
+ {id:"llu",grid:"lettres-noel",cover:"llu",name:"Kit lettres – Les lutins",tag:"Lutins",desc:"Les lutins du Père Noël répondent à l'enfant.",price:"4,99 €",fmt:"PDF à imprimer",pages:P("llu",[1,2,3,4,5,6]),total:6,buy:[["Télécharger le kit PDF · 4,99 €","https://payhip.com/b/TMNve","page"]]},
+ {id:"lre",grid:"lettres-noel",cover:"lre",name:"Kit lettres – Les rennes",tag:"Rennes",desc:"Les rennes et leur traîneau magique.",price:"4,99 €",fmt:"PDF à imprimer",pages:P("lre",[1,2,3,4,5,6]),total:6,buy:[["Télécharger le kit PDF · 4,99 €","https://payhip.com/b/i4xb1","page"]]},
+ {id:"lfo",grid:"lettres-noel",cover:"lfo",name:"Kit lettres – La forêt enchantée",tag:"Forêt enchantée",desc:"Une forêt enneigée pleine de petits animaux.",price:"4,99 €",fmt:"PDF à imprimer",pages:P("lfo",[1,2,3,4,5,6]),total:6,buy:[["Télécharger le kit PDF · 4,99 €","https://payhip.com/b/C3uhF","page"]]},
+ {id:"lgk",grid:"lettres-noel",cover:"lgk",name:"Le grand kit – 6 styles",tag:"Les 6 styles",desc:"Tous les kits réunis : Père Noël, Mère Noël, Saint Nicolas, Lutins, Rennes et Forêt enchantée. Idéal pour plusieurs enfants.",price:"10,99 €",fmt:"PDF à imprimer",pages:P("lgk",[1,2,3,4,5,6]),total:36,buy:[["Télécharger le grand kit PDF · 10,99 €","https://payhip.com/b/Ph9EO","page"]]},
  {id:"ines",grid:"ados",cover:"ines",name:"Les Carnets d'Inès",tag:"Amitié",desc:"Un carnet secret de 1998 au fond d'un casier, à Bruxelles.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("ines",[1,3,4,19,25]),total:54,buy:[["Livre relié, livré chez vous · 21,99 €","commande.html?p=ines","page"],["Kobo","https://www.kobo.com/be/fr/ebook/les-carnets-d-ines"],["Ebook · 5,99 €","https://payhip.com/b/SQdUH"]]},
  {id:"bellerive",grid:"ados",cover:"bellerive",name:"Mystère à Belle-Rive",tag:"Enquête",desc:"Un saphir volé dans un manoir, une légende de Dame Blanche.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("bellerive",[1,3,4,7,16]),total:48,buy:[["Livre relié, livré chez vous · 21,99 €","commande.html?p=bellerive","page"],["Kobo","https://www.kobo.com/be/fr/ebook/mystere-a-belle-rive"],["Ebook · 5,99 €","https://payhip.com/b/aB8pW"]]},
  {id:"marees",grid:"ados",cover:"marees",name:"La Gardienne des Marées",tag:"Fantasy",desc:"Le jour de ses quatorze ans, Nayla entend l'océan lui parler.",price:"21,99 €",fmt:"relié · ebook 5,99 €",pages:P("marees",[1,3,4,13,18]),total:53,buy:[["Livre relié, livré chez vous · 21,99 €","commande.html?p=marees","page"],["Kobo","https://www.kobo.com/be/fr/ebook/la-gardienne-des-marees"],["Ebook · 5,99 €","https://payhip.com/b/g5iW0"]]},
